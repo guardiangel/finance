@@ -3,7 +3,7 @@ import { ThemeProvider,CssBaseline, Box } from "@mui/material";
 import { createTheme} from "@mui/material/styles";
 import { useMemo } from "react";
 import { themeSettings } from "./theme";
-import NavBar from "@/pages/navbar/index";
+import NavBar from "@/app/navbar/page";
 
 export default function Home() {
   const theme = useMemo(() => 
