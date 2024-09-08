@@ -13,3 +13,8 @@ Route note:
     2.1 Create folder called test
     2.2 Create a tsx file called index.tsx in test folder
     2.3 The router will be http://localhost:3000/test
+
+Theme note:
+1. Since we use the ThemeProvider in the app/page.tsx, so we can't visit the page component directly if we use color theme like below:
+palette.grey[300]
+2. Change palette.grey[300] to palette?.grey?.[300].
