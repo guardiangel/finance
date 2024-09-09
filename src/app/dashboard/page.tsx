@@ -1,5 +1,5 @@
 "use client"
-import { useTheme } from '@emotion/react';
+import DashboardBox from '@/components/DashboardBox';
 import { Box, useMediaQuery } from '@mui/material';
 import React from 'react'
 
@@ -52,7 +52,6 @@ const gridTemplateSmallScreen= `
 
 const Dashboard = (props: Props) => {
   const isOverMediumScreen = useMediaQuery("(min-width: 1200px)");
-    const {palette} = useTheme();
   return (
     <Box width="100%" height="100%" display="grid" gap="1.5rem"
     sx={isOverMediumScreen?{
@@ -65,16 +64,17 @@ const Dashboard = (props: Props) => {
       gridAutoRows:"80px",
     }}
     >
-    <Box gridArea="a" bgcolor="#ffffff"></Box>
-    <Box gridArea="b" bgcolor="#ffffff"></Box>
-    <Box gridArea="c" bgcolor="#ffffff"></Box>
-    <Box gridArea="d" bgcolor="#ffffff"></Box>
-    <Box gridArea="e" bgcolor="#ffffff"></Box>
-    <Box gridArea="f" bgcolor="#ffffff"></Box>
-    <Box gridArea="g" bgcolor="#ffffff"></Box>
-    <Box gridArea="h" bgcolor="#ffffff"></Box>
-    <Box gridArea="i" bgcolor="#ffffff"></Box>
-    <Box gridArea="j" bgcolor="#ffffff"></Box>
+    
+    <DashboardBox gridArea="a"></DashboardBox>
+    <DashboardBox gridArea="b"></DashboardBox>
+    <DashboardBox gridArea="c"></DashboardBox>
+    <DashboardBox gridArea="d"></DashboardBox>
+    <DashboardBox gridArea="e"></DashboardBox>
+    <DashboardBox gridArea="f"></DashboardBox>
+    <DashboardBox gridArea="g"></DashboardBox>
+    <DashboardBox gridArea="h"></DashboardBox>
+    <DashboardBox gridArea="i"></DashboardBox>
+    <DashboardBox gridArea="j"></DashboardBox>
     </Box>
   )
 }
