@@ -1,4 +1,4 @@
-Nextjs/mui/
+Nextjs/Mui/Recharts/
 
 1. Start the app
 yarn dev
