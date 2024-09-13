@@ -1,8 +1,8 @@
 import { Box, useMediaQuery } from '@mui/material';
 import React from 'react'
-import FirstRow from './firstRow';
-import SecondRow from './secondRow';
-import ThirdRow from './thirdRow';
+import FirstRow from './FirstRow';
+import SecondRow from './SecondRow';
+import ThirdRow from './ThirdRow';
 
 const gridTemplateLargeScreen= `
   "a b c"
