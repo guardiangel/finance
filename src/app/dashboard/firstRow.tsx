@@ -4,11 +4,10 @@ import DashboardBox from "@/components/DashboardBox"
 import { useGetKpisQuery } from "@/state/api";
 import { useTheme } from "@emotion/react";
 import { useMemo } from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, Legend, LineChart } from 'recharts';
+import { AreaChart, Area, XAxis, Bar, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, Legend, LineChart, BarChart, Rectangle } from 'recharts';
+import { styled } from '@mui/system';
 
-type Props = {}
-
-const FirstRow = (props: Props) => {
+const FirstRow = () => {
   const {data} = useGetKpisQuery();
   const {palette} = useTheme();
   const expense = useMemo(()=>{
@@ -37,7 +36,17 @@ const revenueProfit = useMemo(()=>{
     );
   }, [data]);
 
-
+  const revenue = useMemo(() => {
+    return (
+      data &&
+      data[0].monthlyData.map(({ month, revenue }) => {
+        return {
+          name: month.substring(0, 3),
+          revenue: revenue.toFixed(2),
+        };
+      })
+    );
+  }, [data]);
 
   return (
     <>
@@ -96,6 +105,7 @@ const revenueProfit = useMemo(()=>{
         </AreaChart>
       </ResponsiveContainer>
     </DashboardBox>
+
     <DashboardBox gridArea="b">
     <LineHeader 
     title="ProfitRevenue" 
@@ -148,7 +158,55 @@ const revenueProfit = useMemo(()=>{
         </LineChart>
       </ResponsiveContainer>
     </DashboardBox>
-    <DashboardBox gridArea="c"></DashboardBox>
+    
+    <DashboardBox gridArea="c">
+      <LineHeader 
+        title="RevenueMonthly" 
+        subTitle="Revenue month by month" 
+        sideContent="+4%"/>
+      <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            width={500}
+            height={300}
+            data={revenue}
+            margin={{
+              top: 17,
+              right: 15,
+              left: -5,
+              bottom: 58,
+            }}
+          >
+            <defs>
+              <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor={palette.primary[300]}
+                  stopOpacity={0.5}
+                />
+                <stop
+                  offset="95%"
+                  stopColor={palette.primary[300]}
+                  stopOpacity={0}
+                />
+              </linearGradient>
+            </defs>
+            <CartesianGrid vertical={false} stroke={palette.grey[800]} />
+            <XAxis
+              dataKey="name"
+              axisLine={false}
+              tickLine={false}
+              style={{ fontSize: "10px" }}
+            />
+            <YAxis
+              axisLine={false}
+              tickLine={false}
+              style={{ fontSize: "10px" }}
+            />
+            <Tooltip itemStyle={{color:"red"}}/>
+            <Bar dataKey="revenue"  fill="url(#colorRevenue)" />
+          </BarChart>
+        </ResponsiveContainer>
+    </DashboardBox>
     </>
   )
 }
