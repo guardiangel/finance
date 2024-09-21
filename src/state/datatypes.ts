@@ -42,3 +42,13 @@ export interface GetProductsReponse {
   createAt:string;
   updateAt:string;
 }
+export interface GetTransactionsReponse {
+  id: string;
+  _id: string;
+  __v: number;
+  buyer:string;
+  amount:number;
+  productIds:Array<string>;
+  createAt:string;
+  updateAt:string;
+}

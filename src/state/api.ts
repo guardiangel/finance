@@ -1,11 +1,11 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import { GetKpisReponse, GetProductsReponse } from "./datatypes";
+import { GetKpisReponse, GetProductsReponse,GetTransactionsReponse } from "./datatypes";
 
 //Grab data from backend server.
 export const api = createApi({
     baseQuery: fetchBaseQuery({baseUrl: process.env.NEXT_PUBLIC_VITE_BASE_URL}),
    reducerPath:"main",
-   tagTypes:["Kpis","Products"],
+   tagTypes:["Kpis","Products","Transactions"],
    endpoints:(build)=>({
     getKpis:build.query<Array<GetKpisReponse>,void>({
         query:()=>"kpi/kpis",
@@ -14,8 +14,12 @@ export const api = createApi({
     getProducts:build.query<Array<GetProductsReponse>,void>({
         query:()=>"product/products",
         providesTags:["Products"]
+    }),
+    getTransactions:build.query<Array<GetTransactionsReponse>,void>({
+        query:()=>"transaction/transactions",
+        providesTags:["Transactions"]
     })
    }),
 })
 
-export const {useGetKpisQuery, useGetProductsQuery} = api;
+export const {useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery} = api;
