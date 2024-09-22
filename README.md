@@ -1,6 +1,6 @@
 Nextjs/Mui/Recharts/
 
-1. Start the app
+1. Start the app(start the finance_server first)
 yarn dev
 2. Visit http://localhost:3000
 
